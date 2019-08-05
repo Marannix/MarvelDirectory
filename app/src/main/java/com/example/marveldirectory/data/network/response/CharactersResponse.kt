@@ -1,4 +1,4 @@
-package com.example.marveldirectory.data.response
+package com.example.marveldirectory.data.network.response
 
 import com.example.marveldirectory.data.entity.DataEntry
 import com.google.gson.annotations.SerializedName
