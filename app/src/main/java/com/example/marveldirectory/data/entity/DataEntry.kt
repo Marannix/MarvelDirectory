@@ -7,5 +7,5 @@ data class DataEntry (
     val limit: Int,
     val total: Int,
     val count: Int,
-    val results: Results
+    val results: List<Results>
 )
