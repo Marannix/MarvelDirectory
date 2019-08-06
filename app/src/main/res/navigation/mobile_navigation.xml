@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/mobile_navigation"
+            app:startDestination="@id/destination_home">
+
+    <fragment android:id="@+id/destination_home" android:name="com.example.marveldirectory.fragment.HomeFragment"
+              android:label="fragment_home" tools:layout="@layout/fragment_home">
+        <action android:id="@+id/next_action"
+                app:destination="@id/destination_settings"/>
+        <action android:id="@+id/homeToComicAction" app:destination="@id/destination_comic"/>
+    </fragment>
+    <fragment android:id="@+id/destination_settings" android:name="com.example.marveldirectory.fragment.SettingsFragment"
+              android:label="fragment_settings" tools:layout="@layout/fragment_settings"/>
+    <fragment android:id="@+id/destination_comic" android:name="com.example.marveldirectory.fragment.ComicFragment"
+              android:label="fragment_comic" tools:layout="@layout/fragment_comic">
+        <argument android:name="characters" app:argType="integer" android:defaultValue="0"/>
+    </fragment>
+</navigation>
