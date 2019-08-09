@@ -18,6 +18,7 @@ const val BASE_URL = "https://gateway.marvel.com/v1/public/"
 interface MarvelApiService {
 
     //https://gateway.marvel.com/v1/public/characters?ts=1&apikey=f0bc3cc36c0b6b9a740687938bb7ec18&hash=8d04dfcad3727abed7b121c4b2d90178
+    //character id = 1011334
 
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()

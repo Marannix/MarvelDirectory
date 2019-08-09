@@ -9,11 +9,19 @@
         <action android:id="@+id/next_action"
                 app:destination="@id/destination_settings"/>
         <action android:id="@+id/homeToComicAction" app:destination="@id/destination_comic"/>
+        <action android:id="@+id/charactersToCharacterAction" app:destination="@id/destination_character"/>
     </fragment>
-    <fragment android:id="@+id/destination_settings" android:name="com.example.marveldirectory.fragment.SettingsFragment"
+    <fragment android:id="@+id/destination_settings"
+              android:name="com.example.marveldirectory.fragment.SettingsFragment"
               android:label="fragment_settings" tools:layout="@layout/fragment_settings"/>
     <fragment android:id="@+id/destination_comic" android:name="com.example.marveldirectory.fragment.ComicFragment"
               android:label="fragment_comic" tools:layout="@layout/fragment_comic">
         <argument android:name="characters" app:argType="com.example.marveldirectory.data.entity.characters.Results"/>
     </fragment>
+    <fragment android:id="@+id/destination_character"
+              android:name="com.example.marveldirectory.fragment.CharacterFragment"
+              android:label="fragment_character" tools:layout="@layout/fragment_character">
+        <argument android:name="character" app:argType="com.example.marveldirectory.data.entity.characters.Results"/>
+    </fragment>
+
 </navigation>
