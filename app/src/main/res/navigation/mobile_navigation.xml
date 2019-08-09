@@ -14,6 +14,6 @@
               android:label="fragment_settings" tools:layout="@layout/fragment_settings"/>
     <fragment android:id="@+id/destination_comic" android:name="com.example.marveldirectory.fragment.ComicFragment"
               android:label="fragment_comic" tools:layout="@layout/fragment_comic">
-        <argument android:name="characters" app:argType="integer" android:defaultValue="0"/>
+        <argument android:name="characters" app:argType="com.example.marveldirectory.data.entity.characters.Results"/>
     </fragment>
 </navigation>

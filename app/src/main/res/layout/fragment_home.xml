@@ -3,17 +3,10 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
              tools:context=".fragment.HomeFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-            android:id="@+id/comicOpenButton"
+    
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/characterRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="gadgdaghi"/>
-
+            android:layout_height="match_parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

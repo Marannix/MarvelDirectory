@@ -14,7 +14,6 @@ class ComicFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_comic, container, false)
     }
 
@@ -23,7 +22,7 @@ class ComicFragment : Fragment() {
 
         arguments?.let {
             val safeArgs = ComicFragmentArgs.fromBundle(it)
-            comicText.text = "${safeArgs.characters}"
+            comicText.text = safeArgs.characters.description
         }
     }
 }
