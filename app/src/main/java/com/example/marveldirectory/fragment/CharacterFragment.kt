@@ -34,20 +34,28 @@ class CharacterFragment : Fragment() {
 
         bind()
     }
-
-    private fun bind() {
-        removeToolbar()
-        setSelectedCharacterImage()
-        setSelectedCharacterSummary()
-        setSelectedCharacterPoster()
-    }
-
     private fun removeToolbar() {
         (activity as? AppCompatActivity)?.supportActionBar?.hide()
     }
 
     private fun showToolbar() {
         (activity as? AppCompatActivity)?.supportActionBar?.show()
+    }
+
+    private fun bind() {
+        removeToolbar()
+        setupHeader()
+        setSelectedCharacterSummary()
+        setSelectedCharacterPoster()
+    }
+
+    private fun setupHeader() {
+        setSelectedCharacterName()
+        setSelectedCharacterImage()
+    }
+
+    private fun setSelectedCharacterName() {
+        selectedCharacterName.text = character.name
     }
 
     private fun setSelectedCharacterPoster() {
@@ -57,7 +65,7 @@ class CharacterFragment : Fragment() {
 
     private fun setSelectedCharacterImage() {
         val image = character.thumbnail.path + "." + character.thumbnail.extension
-        Picasso.get().load(image).resize(335, 335).into(chosenCharacterImage)
+        Picasso.get().load(image).resize(250, 250).into(chosenCharacterImage)
     }
 
     private fun setSelectedCharacterSummary() {

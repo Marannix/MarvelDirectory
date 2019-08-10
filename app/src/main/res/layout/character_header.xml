@@ -15,6 +15,7 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
     <View
+            android:id="@+id/imageBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/white"
@@ -33,5 +34,17 @@
             app:layout_constraintTop_toBottomOf="@id/chosenCharacterPoster"
             app:layout_constraintBottom_toBottomOf="@id/chosenCharacterPoster"
     />
+
+    <TextView
+            android:id="@+id/selectedCharacterName"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageBackground"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
