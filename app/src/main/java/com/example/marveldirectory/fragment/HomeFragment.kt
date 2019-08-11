@@ -10,12 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.marveldirectory.R
 import com.example.marveldirectory.adapter.CharactersAdapter
-import com.example.marveldirectory.data.entity.characters.Results
+import com.example.marveldirectory.data.entity.characters.CharactersResults
 import com.example.marveldirectory.repository.CharactersRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 // TODO: Rename to CharactersFragment
@@ -45,18 +44,19 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadCharacters() {
-        val disposable = CharactersRepository().fetchCharacters()
+        val disposable = CharactersRepository(requireContext()).fetchCharacters()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { onRetrieveCharactersSuccess(it.dataEntry.results) },
+                { onRetrieveCharactersSuccess(it.charactersData.results)
+                CharactersRepository(requireContext()).persistFetchedCharacters(it.charactersData.results)},
                 { onRetrieveCharactersError(it.message) }
             )
 
         disposables.add(disposable)
     }
 
-    private fun onRetrieveCharactersSuccess(results: List<Results>) {
+    private fun onRetrieveCharactersSuccess(results: List<CharactersResults>) {
         adapter.setData(results)
     }
 

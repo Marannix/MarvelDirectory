@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marveldirectory.R
-import com.example.marveldirectory.data.entity.characters.Results
-import com.example.marveldirectory.data.entity.characters.Thumbnail
+import com.example.marveldirectory.data.entity.characters.CharactersResults
+import com.example.marveldirectory.data.entity.characters.CharactersThumbnail
 import com.example.marveldirectory.fragment.HomeFragmentDirections
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.character_item.view.*
 
 class CharactersAdapter : RecyclerView.Adapter<CharactersAdapter.ViewHolder>() {
 
-    private var characters: List<Results> = emptyList()
+    private var characters: List<CharactersResults> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate((R.layout.character_item), parent, false))
@@ -28,7 +28,7 @@ class CharactersAdapter : RecyclerView.Adapter<CharactersAdapter.ViewHolder>() {
         holder.bind(characters[position])
     }
 
-    fun setData(results: List<Results>) {
+    fun setData(results: List<CharactersResults>) {
         characters = results
         this.notifyDataSetChanged()
     }
@@ -36,32 +36,32 @@ class CharactersAdapter : RecyclerView.Adapter<CharactersAdapter.ViewHolder>() {
     fun setFakeData() {
         characters =
             listOf(
-                Results(
+                CharactersResults(
                     1343, "A-Star", "",
-                    Thumbnail("https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg", ".jpg")
+                    CharactersThumbnail("https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg", ".jpg")
                 ),
-                Results(
+                CharactersResults(
                     1343, "A-Star", "",
-                    Thumbnail("https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", ".jpg")
+                    CharactersThumbnail("https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", ".jpg")
                 ),
-                Results(
+                CharactersResults(
                     1343, "A-Star", "",
-                    Thumbnail("https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", ".jpg")
+                    CharactersThumbnail("https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", ".jpg")
                 ),
-                Results(
+                CharactersResults(
                     1343, "A-Star", "",
-                    Thumbnail("https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", ".jpg")
+                    CharactersThumbnail("https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", ".jpg")
                 ),
-                Results(
+                CharactersResults(
                     1343, "A-Star", "",
-                    Thumbnail("https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", ".jpg")
+                    CharactersThumbnail("https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", ".jpg")
                 )
             )
         this.notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(character: Results) {
+        fun bind(character: CharactersResults) {
             itemView.characterName.text = character.name
             val image = character.thumbnail.path + "." + character.thumbnail.extension
             Picasso.get().load(image).resize(335,335).into(itemView.characterImage)

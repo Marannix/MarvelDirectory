@@ -1,6 +1,6 @@
 package com.example.marveldirectory.data.entity.characters.comics
 
-data class CharacterComicEntry(
+data class CharacterComicData(
     val offset: Int,
     val limit: Int,
     val total: Int,

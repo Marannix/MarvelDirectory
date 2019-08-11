@@ -7,19 +7,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marveldirectory.R
 import com.example.marveldirectory.adapter.CharacterComicAdapter
-import com.example.marveldirectory.data.entity.characters.Results
+import com.example.marveldirectory.data.entity.characters.CharactersResults
 import com.example.marveldirectory.data.entity.characters.comics.CharacterComicResult
 import com.example.marveldirectory.repository.CharactersRepository
 import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.character_comic.*
 import kotlinx.android.synthetic.main.character_header.*
 import kotlinx.android.synthetic.main.character_summary.*
@@ -30,7 +28,7 @@ class CharacterFragment : Fragment() {
     private val disposables = CompositeDisposable()
     private val adapter = CharacterComicAdapter()
 
-    private lateinit var character: Results
+    private lateinit var character: CharactersResults
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_character, container, false)
@@ -92,11 +90,11 @@ class CharacterFragment : Fragment() {
     }
 
     private fun loadComics() {
-        val disposable = CharactersRepository().fetchCharacterComics(character.id)
+        val disposable = CharactersRepository(requireContext()).fetchCharacterComics(character.id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { onRetrieveCharactersComicSuccess(it.characterComicEntry.results) },
+                { onRetrieveCharactersComicSuccess(it.characterComicData.results)},
                 { onRetrieveCharactersComicError(it.message) }
             )
         disposables.add(disposable)
