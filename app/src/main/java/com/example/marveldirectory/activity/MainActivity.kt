@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -24,6 +25,13 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.destination_home -> showBottomNav()
+                else -> hideBottomNav()
+            }
+        }
+        
         setupBottomNavMenu(navController)
     }
 
@@ -44,6 +52,15 @@ class MainActivity : AppCompatActivity() {
         return navigated || super.onOptionsItemSelected(item)
     }
 
+    private fun showBottomNav() {
+        bottom_nav.visibility = View.VISIBLE
+
+    }
+
+    private fun hideBottomNav() {
+        bottom_nav.visibility = View.GONE
+
+    }
 
 //    // for landscape
 //    private fun setupActionBar(navController: NavController) {
