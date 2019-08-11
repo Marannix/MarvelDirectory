@@ -15,6 +15,7 @@ import com.example.marveldirectory.repository.CharactersRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 // TODO: Rename to CharactersFragment
@@ -68,6 +69,7 @@ class HomeFragment : Fragment() {
     private fun updateToolbar() {
         (activity as? AppCompatActivity)?.supportActionBar?.title = "Marvel Characters"
     }
+
 
     override fun onStop() {
         disposables.dispose()

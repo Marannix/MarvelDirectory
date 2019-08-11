@@ -22,7 +22,9 @@
 
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:background="@color/colorAccent"
+            android:background="@color/white"
+            app:titleTextColor="@color/deep_blue"
+            android:elevation="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +37,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:menu="@menu/menu_navigation"
-            android:background="@color/colorPrimaryDark"
+            app:itemIconTint="@color/deep_blue"
+            app:itemTextColor="@color/deep_blue"
+            app:elevation="8dp"
+            android:background="@color/white"
+            android:elevation="6dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

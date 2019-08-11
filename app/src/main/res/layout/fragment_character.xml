@@ -5,6 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/light_grey"
         tools:context=".fragment.CharacterFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,9 +27,21 @@
                 layout="@layout/character_summary"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_marginTop="14dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/character_header"
         />
+
+        <include
+                android:id="@+id/character_comics"
+                layout="@layout/character_comic"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="14dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/character_summary"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

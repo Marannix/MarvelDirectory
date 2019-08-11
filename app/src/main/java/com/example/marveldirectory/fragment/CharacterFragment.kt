@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.marveldirectory.R
+import com.example.marveldirectory.adapter.CharacterComicAdapter
 import com.example.marveldirectory.data.entity.characters.Results
 import com.example.marveldirectory.data.entity.characters.comics.CharacterComicResult
 import com.example.marveldirectory.repository.CharactersRepository
@@ -15,6 +19,8 @@ import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.character_comic.*
 import kotlinx.android.synthetic.main.character_header.*
 import kotlinx.android.synthetic.main.character_summary.*
 import kotlinx.android.synthetic.main.fragment_character.*
@@ -22,6 +28,7 @@ import kotlinx.android.synthetic.main.fragment_character.*
 class CharacterFragment : Fragment() {
 
     private val disposables = CompositeDisposable()
+    private val adapter = CharacterComicAdapter()
 
     private lateinit var character: Results
 
@@ -52,7 +59,6 @@ class CharacterFragment : Fragment() {
         removeToolbar()
         setupHeader()
         setSelectedCharacterSummary()
-        //setSelectedCharacterPoster()
         loadComics()
     }
 
@@ -65,10 +71,12 @@ class CharacterFragment : Fragment() {
         selectedCharacterName.text = character.name
     }
 
-//    private fun setSelectedCharacterPoster() {
-//        val image = character.thumbnail.path + "." + character.thumbnail.extension
-//        Picasso.get().load(image).into(chosenCharacterPoster)
-//    }
+    private fun setSelectedCharacterPoster(results: List<CharacterComicResult>) {
+        //TODO: Handle if no result exists
+        val image = results[0].thumbnail.path + "." + results[0].thumbnail.extension
+        Picasso.get().load(image).into(chosenCharacterPoster)
+
+    }
 
     private fun setSelectedCharacterImage() {
         val image = character.thumbnail.path + "." + character.thumbnail.extension
@@ -95,7 +103,10 @@ class CharacterFragment : Fragment() {
     }
 
     private fun onRetrieveCharactersComicSuccess(results: List<CharacterComicResult>) {
-        Picasso.get().load(results[0].thumbnail.path + "." + results[0].thumbnail.extension  ).into(chosenCharacterPoster)
+        setSelectedCharacterPoster(results)
+        characterComicRecyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        characterComicRecyclerView.adapter = adapter
+        adapter.setComic(results)
     }
 
     private fun onRetrieveCharactersComicError(errorMessage: String?) {
