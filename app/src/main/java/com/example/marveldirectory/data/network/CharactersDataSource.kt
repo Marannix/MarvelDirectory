@@ -24,7 +24,7 @@ class CharactersDataSource(
             marvelApiService.charactersApi().getCharacters(params.requestedLoadSize, 0).subscribe(
                 { response ->
                     updateState(NetworkState.DONE)
-                    callback.onResult(response.charactersData.results, null, 20)
+                    callback.onResult(response.charactersData.results, null, 100)
                 },
                 {
                     updateState(NetworkState.ERROR)
@@ -40,7 +40,7 @@ class CharactersDataSource(
             .subscribe(
                 { response ->
                     updateState(NetworkState.DONE)
-                    callback.onResult(response.charactersData.results, params.key + 21)
+                    callback.onResult(response.charactersData.results, params.key + 121)
 
                 },
                 {
