@@ -1,6 +1,7 @@
 package com.example.marveldirectory.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,7 +53,9 @@ class HomeFragment : Fragment() {
                 CharactersRepository(requireContext()).persistFetchedCharacters(it.charactersData.results)},
                 { onRetrieveCharactersError(it.message) }
             )
-
+        
+        val check = CharactersRepository(requireContext()).getAllCharacters()[1].name
+        Log.d("fail", check)
         disposables.add(disposable)
     }
 

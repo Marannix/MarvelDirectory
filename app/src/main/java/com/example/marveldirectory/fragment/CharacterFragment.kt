@@ -70,8 +70,13 @@ class CharacterFragment : Fragment() {
     }
 
     private fun setSelectedCharacterPoster(results: List<CharacterComicResult>) {
-        //TODO: Handle if no result exists
-        val image = results[0].thumbnail.path + "." + results[0].thumbnail.extension
+
+        val image: String = if (results.isNotEmpty()) {
+            results[0].thumbnail.path + "." + results[0].thumbnail.extension
+        } else {
+            character.thumbnail.path + "." + character.thumbnail.extension
+        }
+
         Picasso.get().load(image).into(chosenCharacterPoster)
 
     }

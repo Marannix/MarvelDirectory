@@ -35,7 +35,9 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.destination_home -> showBottomNav()
+                R.id.destination_home -> {
+                    showBottomNav()
+                }
                 else -> hideBottomNav()
             }
         }

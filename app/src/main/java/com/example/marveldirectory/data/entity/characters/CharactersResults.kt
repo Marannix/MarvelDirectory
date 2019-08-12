@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 
 const val CURRENT_CHARACTER_ID = 0
@@ -18,6 +19,7 @@ data class CharactersResults(
     val thumbnail: CharactersThumbnail
 ) : Parcelable
 {
-    @PrimaryKey(autoGenerate = false)
+    @IgnoredOnParcel
+    @PrimaryKey(autoGenerate = true)
     var primaryId: Int = CURRENT_CHARACTER_ID
 }
