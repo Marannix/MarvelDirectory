@@ -10,7 +10,13 @@ import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
+import androidx.room.DatabaseConfiguration
+import androidx.room.InvalidationTracker
+import androidx.sqlite.db.SupportSQLiteOpenHelper
 import com.example.marveldirectory.R
+import com.example.marveldirectory.data.database.DatabaseHelper
+import com.example.marveldirectory.data.database.MarvelDatabase
+import com.example.marveldirectory.data.entity.characters.CharactersDataDao
 import com.example.marveldirectory.repository.CharactersRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -23,17 +29,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        DatabaseHelper(this).retrieveDatabase()
+
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.destination_home -> showBottomNav()
+                R.id.destination_home -> {
+                    showBottomNav()
+                }
                 else -> hideBottomNav()
             }
         }
-        
+
         setupBottomNavMenu(navController)
     }
+
 
     private fun setupBottomNavMenu(navController: NavController) {
         bottom_nav?.let {

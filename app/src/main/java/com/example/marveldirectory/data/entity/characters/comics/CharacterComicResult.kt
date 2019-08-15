@@ -1,6 +1,7 @@
 package com.example.marveldirectory.data.entity.characters.comics
 
 import android.os.Parcelable
+import androidx.room.Embedded
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
