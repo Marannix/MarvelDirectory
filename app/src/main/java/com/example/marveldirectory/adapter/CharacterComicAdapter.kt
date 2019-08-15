@@ -43,7 +43,7 @@ class CharacterComicAdapter : RecyclerView.Adapter<CharacterComicAdapter.ViewHol
             val image = comics.thumbnail.path + "." + comics.thumbnail.extension
             Picasso.get()
                 .load(image)
-                .resize(160, 200)
+                .placeholder(R.drawable.progress_animation)
                 .into(itemView.comicPoster)
         }
 

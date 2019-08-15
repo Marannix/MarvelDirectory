@@ -28,7 +28,7 @@ abstract class MarvelDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context): MarvelDatabase {
             return Room.databaseBuilder(
                 context.applicationContext,
-                MarvelDatabase::class.java, "weather.db"
+                MarvelDatabase::class.java, "marvel.db"
             ).allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
                 .build()

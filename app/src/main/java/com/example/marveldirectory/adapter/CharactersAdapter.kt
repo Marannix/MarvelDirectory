@@ -13,9 +13,11 @@ import com.example.marveldirectory.data.entity.characters.CharactersResults
 import com.example.marveldirectory.data.entity.characters.CharactersThumbnail
 import com.example.marveldirectory.data.network.NetworkState
 import com.example.marveldirectory.fragment.HomeFragmentDirections
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.character_item.view.*
 import kotlinx.android.synthetic.main.characters_list_footer.view.*
+import java.lang.Exception
 
 private const val DATA_VIEW_TYPE = 1
 private const val FOOTER_VIEW_TYPE = 2
@@ -53,7 +55,7 @@ class CharactersAdapter(private val retry: () -> Unit) :
     companion object {
         val CharactersResultsDiffCallback = object : DiffUtil.ItemCallback<CharactersResults>() {
             override fun areItemsTheSame(oldItem: CharactersResults, newItem: CharactersResults): Boolean {
-                return oldItem == newItem
+                return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(oldItem: CharactersResults, newItem: CharactersResults): Boolean {
@@ -115,7 +117,18 @@ class CharactersAdapter(private val retry: () -> Unit) :
         fun bind(character: CharactersResults) {
             itemView.characterName.text = character.name
             val image = character.thumbnail.path + "." + character.thumbnail.extension
-            Picasso.get().load(image).resize(335, 335).into(itemView.characterImage)
+            Picasso.get().load(image).into(itemView.characterImage, object: Callback {
+                override fun onSuccess() {
+                  if (itemView.characterImageProgress != null) {
+                      itemView.characterImageProgress.visibility = View.GONE
+                  }
+                }
+
+                override fun onError(e: Exception?) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+            })
             itemView.characterLayout.setOnClickListener {
                 val nextAction = HomeFragmentDirections.charactersToCharacterAction(character)
                 nextAction.character = character
