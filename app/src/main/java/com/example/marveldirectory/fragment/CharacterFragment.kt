@@ -83,7 +83,7 @@ class CharacterFragment : Fragment() {
 
     private fun setSelectedCharacterImage() {
         val image = character.thumbnail.path + "." + character.thumbnail.extension
-        Picasso.get().load(image).resize(250, 250).into(chosenCharacterImage)
+        Picasso.get().load(image).into(chosenCharacterImage)
     }
 
     private fun setSelectedCharacterSummary() {

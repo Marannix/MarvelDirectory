@@ -16,7 +16,7 @@ class CharactersRepository(val context:Context){
     private val databaseHelper = DatabaseHelper(context)
 
     fun fetchCharacters(): Single<CharactersResponse> {
-        return marvelApiService.charactersApi().getCharacters()
+        return marvelApiService.charactersApi().getCharacters(20, 0)
     }
 
     fun fetchCharacterComics(id: Int): Single<CharactersComicResponse> {
