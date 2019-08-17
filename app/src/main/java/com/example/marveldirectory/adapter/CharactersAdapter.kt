@@ -25,14 +25,9 @@ private const val FOOTER_VIEW_TYPE = 2
 class CharactersAdapter(private val retry: () -> Unit) :
     PagedListAdapter<CharactersResults, RecyclerView.ViewHolder>(CharactersResultsDiffCallback) {
 
-
     private var state = NetworkState.LOADING
 
     private var characters: List<CharactersResults> = emptyList()
-
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-//        return ViewHolder(LayoutInflater.from(parent.context).inflate((R.layout.character_item), parent, false))
-//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == DATA_VIEW_TYPE) CharactersViewHolder.create(parent) else ListFooterViewHolder.create(
@@ -51,7 +46,6 @@ class CharactersAdapter(private val retry: () -> Unit) :
         return if (position < super.getItemCount()) DATA_VIEW_TYPE else FOOTER_VIEW_TYPE
     }
 
-    // TODO: DOUBLE CHECK THIS
     companion object {
         val CharactersResultsDiffCallback = object : DiffUtil.ItemCallback<CharactersResults>() {
             override fun areItemsTheSame(oldItem: CharactersResults, newItem: CharactersResults): Boolean {
@@ -75,15 +69,6 @@ class CharactersAdapter(private val retry: () -> Unit) :
     fun setState( state: NetworkState) {
         this.state = state
         notifyItemChanged(super.getItemCount())
-    }
-
-//    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        holder.bind(characters[position])
-//    }
-
-    fun setData(results: List<CharactersResults>) {
-        characters = results
-        this.notifyDataSetChanged()
     }
 
     fun setFakeData() {
@@ -119,9 +104,11 @@ class CharactersAdapter(private val retry: () -> Unit) :
             val image = character.thumbnail.path + "." + character.thumbnail.extension
             Picasso.get().load(image).into(itemView.characterImage, object: Callback {
                 override fun onSuccess() {
-                  if (itemView.characterImageProgress != null) {
-                      itemView.characterImageProgress.visibility = View.GONE
-                  }
+                    // TODO: The hourglass is still animating in the background, it can't be seen because the
+                    //  image view has an elevation of 4dp
+//                  if (itemView.hourglass != null) {
+//                      itemView.hourglass.visibility = View.GONE
+//                  }
                 }
 
                 override fun onError(e: Exception?) {

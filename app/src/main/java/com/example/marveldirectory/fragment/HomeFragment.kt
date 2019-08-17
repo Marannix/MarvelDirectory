@@ -25,7 +25,6 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: CharactersAdapter
 
     private val disposables = CompositeDisposable()
-//    private val adapter = CharactersAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
@@ -44,7 +43,6 @@ class HomeFragment : Fragment() {
         updateToolbar()
         setUpdateAdapter()
         initState()
-//        loadCharacters()
     }
 
     private fun setUpdateAdapter() {
@@ -67,34 +65,6 @@ class HomeFragment : Fragment() {
                 adapter.setState(state ?: NetworkState.DONE)
             }
         })
-    }
-
-
-//    private fun loadCharacters() {
-//        val disposable = CharactersRepository(requireContext()).fetchCharacters()
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe(
-//                {
-//                    onRetrieveCharactersSuccess(it.charactersData.results)
-//                    CharactersRepository(requireContext()).persistFetchedCharacters(it.charactersData.results)
-//                },
-//                { onRetrieveCharactersError(it.message) }
-//            )
-//
-//        val check = CharactersRepository(requireContext()).getAllCharacters()[1].name
-//        Log.d("fail", check)
-//        disposables.add(disposable)
-//    }
-
-    private fun onRetrieveCharactersSuccess(results: List<CharactersResults>) {
-        adapter.setData(results)
-    }
-
-    private fun onRetrieveCharactersError(errorMessage: String?) {
-        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT)
-            .show()
-        adapter.setFakeData()
     }
 
     private fun updateToolbar() {

@@ -19,16 +19,26 @@
             android:elevation="4dp"
     />
 
-    <ProgressBar
-            android:id="@+id/characterImageProgress"
+    <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/hourglass"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            app:lottie_fileName="hourglass_loading.json"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
 
-            app:layout_constraintStart_toStartOf="@id/characterImage"
-            app:layout_constraintEnd_toEndOf="@id/characterImage"
-            app:layout_constraintTop_toTopOf="@id/characterImage"
-            app:layout_constraintBottom_toBottomOf="@id/characterImage"
-    />
+    <!--<ProgressBar-->
+    <!--android:id="@+id/characterImageProgress"-->
+    <!--android:layout_width="150dp"-->
+    <!--android:layout_height="150dp"-->
+    <!--app:layout_constraintStart_toStartOf="@id/characterImage"-->
+    <!--app:layout_constraintEnd_toEndOf="@id/characterImage"-->
+    <!--app:layout_constraintTop_toTopOf="@id/characterImage"-->
+    <!--app:layout_constraintBottom_toBottomOf="@id/characterImage"-->
+    <!--/>-->
 
     <TextView
             android:id="@+id/characterName"

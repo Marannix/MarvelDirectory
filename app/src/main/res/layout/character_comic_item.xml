@@ -11,8 +11,19 @@
             android:layout_width="80dp"
             android:layout_height="120dp"
             android:scaleType="fitXY"
+            android:elevation="4dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/hourglass"
+            android:layout_width="80dp"
+            android:layout_height="120dp"
+            app:lottie_fileName="hourglass_loading.json"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
 
     <TextView
             android:id="@+id/comicTitle"

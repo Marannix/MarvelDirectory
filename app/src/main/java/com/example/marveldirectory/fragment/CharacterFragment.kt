@@ -13,7 +13,9 @@ import com.example.marveldirectory.R
 import com.example.marveldirectory.adapter.CharacterComicAdapter
 import com.example.marveldirectory.data.entity.characters.CharactersResults
 import com.example.marveldirectory.data.entity.characters.comics.CharacterComicResult
+import com.example.marveldirectory.data.entity.characters.comics.CharacterComicThumbnail
 import com.example.marveldirectory.repository.CharactersRepository
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -22,6 +24,7 @@ import kotlinx.android.synthetic.main.character_comic.*
 import kotlinx.android.synthetic.main.character_header.*
 import kotlinx.android.synthetic.main.character_summary.*
 import kotlinx.android.synthetic.main.fragment_character.*
+import java.lang.Exception
 
 class CharacterFragment : Fragment() {
 
@@ -57,7 +60,13 @@ class CharacterFragment : Fragment() {
         removeToolbar()
         setupHeader()
         setSelectedCharacterSummary()
+        setupComicAdapter()
         loadComics()
+    }
+
+    private fun setupComicAdapter() {
+        characterComicRecyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        characterComicRecyclerView.adapter = adapter
     }
 
     private fun setupHeader() {
@@ -77,7 +86,18 @@ class CharacterFragment : Fragment() {
             character.thumbnail.path + "." + character.thumbnail.extension
         }
 
-        Picasso.get().load(image).into(chosenCharacterPoster)
+        Picasso.get().load(image).into(chosenCharacterPoster, object: Callback {
+            override fun onSuccess() {
+                if (characterHeaderPosterLoading != null) {
+                    characterHeaderPosterLoading.visibility = View.GONE
+                }
+            }
+
+            override fun onError(e: Exception?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        })
 
     }
 
@@ -99,7 +119,7 @@ class CharacterFragment : Fragment() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { onRetrieveCharactersComicSuccess(it.characterComicData.results)},
+                { onRetrieveCharactersComicSuccess(it.characterComicData.results) },
                 { onRetrieveCharactersComicError(it.message) }
             )
         disposables.add(disposable)
@@ -107,8 +127,6 @@ class CharacterFragment : Fragment() {
 
     private fun onRetrieveCharactersComicSuccess(results: List<CharacterComicResult>) {
         setSelectedCharacterPoster(results)
-        characterComicRecyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        characterComicRecyclerView.adapter = adapter
         adapter.setComic(results)
     }
 
