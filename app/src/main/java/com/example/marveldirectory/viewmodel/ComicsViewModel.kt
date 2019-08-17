@@ -17,13 +17,13 @@ import io.reactivex.disposables.CompositeDisposable
 class ComicsViewModel : ViewModel() {
 
     private var marvelApiService = object : MarvelApiService {}
-    var comicsList: LiveData<PagedList<CharacterComicResult>>
+    lateinit var comicsList: LiveData<PagedList<CharacterComicResult>>
     private val compositeDisposable = CompositeDisposable()
     private val pageSize = 10
-    private var comicsDataSourceFactory: ComicsDataSourceFactory
+    private lateinit var comicsDataSourceFactory: ComicsDataSourceFactory
 
-    init {
-        comicsDataSourceFactory = ComicsDataSourceFactory(marvelApiService, compositeDisposable)
+    fun initViewModel(id: Int) {
+        comicsDataSourceFactory = ComicsDataSourceFactory(marvelApiService, compositeDisposable, id)
         val config = PagedList.Config.Builder()
             .setPageSize(pageSize)
             .setEnablePlaceholders(true)

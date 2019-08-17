@@ -24,8 +24,6 @@ class HomeFragment : Fragment() {
     private lateinit var charactersViewModel: CharactersViewModel
     private lateinit var adapter: CharactersAdapter
 
-    private val disposables = CompositeDisposable()
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -47,6 +45,8 @@ class HomeFragment : Fragment() {
 
     private fun setUpdateAdapter() {
         adapter = CharactersAdapter { charactersViewModel.retry() }
+
+        //TODO: If using tablet set spanCount to 7?
         charactersRecyclerView.layoutManager = GridLayoutManager(context, 3)
         charactersRecyclerView.adapter = adapter
         charactersViewModel.charactersList.observe(this, Observer {
@@ -73,7 +73,6 @@ class HomeFragment : Fragment() {
 
 
     override fun onStop() {
-        disposables.dispose()
         super.onStop()
     }
 }

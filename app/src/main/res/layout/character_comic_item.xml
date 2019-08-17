@@ -16,7 +16,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.airbnb.lottie.LottieAnimationView
+     <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/hourglass"
             android:layout_width="80dp"
             android:layout_height="120dp"
