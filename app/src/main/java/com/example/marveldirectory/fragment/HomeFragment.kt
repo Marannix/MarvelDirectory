@@ -71,8 +71,4 @@ class HomeFragment : Fragment() {
         (activity as? AppCompatActivity)?.supportActionBar?.title = "Marvel Characters"
     }
 
-
-    override fun onStop() {
-        super.onStop()
-    }
 }

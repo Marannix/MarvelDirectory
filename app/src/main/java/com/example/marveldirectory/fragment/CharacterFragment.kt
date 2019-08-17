@@ -126,7 +126,7 @@ class CharacterFragment : Fragment() {
 
     private fun onRetrieveCharactersComicSuccess(results: List<CharacterComicResult>) {
         setSelectedCharacterPoster(results)
-        adapter.setComic(results)
+        adapter.setComic(results, character)
     }
 
     private fun onRetrieveCharactersComicError(errorMessage: String?) {

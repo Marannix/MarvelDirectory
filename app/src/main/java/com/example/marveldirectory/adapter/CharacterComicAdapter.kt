@@ -3,9 +3,12 @@ package com.example.marveldirectory.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marveldirectory.R
+import com.example.marveldirectory.data.entity.characters.CharactersResults
 import com.example.marveldirectory.data.entity.characters.comic.CharacterComicResult
+import com.example.marveldirectory.fragment.CharacterFragmentDirections
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.character_comic_item.view.*
@@ -16,6 +19,7 @@ const val MAX_DATA_SIZE = 3
 class CharacterComicAdapter : RecyclerView.Adapter<CharacterComicAdapter.ViewHolder>() {
 
     private var data: List<CharacterComicResult> = emptyList()
+    private lateinit var specificCharacter: CharactersResults
     private var comicDataSize = 3
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,11 +32,15 @@ class CharacterComicAdapter : RecyclerView.Adapter<CharacterComicAdapter.ViewHol
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (data.isNotEmpty())
-            holder.bind(data[position], data.size, position)
+            holder.bind(data[position], data.size, position, specificCharacter)
     }
 
-    fun setComic(comics: List<CharacterComicResult>) {
+    fun setComic(
+        comics: List<CharacterComicResult>,
+        character: CharactersResults
+    ) {
         data = comics
+        specificCharacter = character
         comicDataSize =
             if (data.size > 3) {
                 MAX_DATA_SIZE
@@ -46,7 +54,8 @@ class CharacterComicAdapter : RecyclerView.Adapter<CharacterComicAdapter.ViewHol
         fun bind(
             comics: CharacterComicResult,
             comicSize: Int,
-            position: Int
+            position: Int,
+            specificCharacter: CharactersResults
         ) {
             itemView.comicTitle.text = comics.title
             val image = comics.thumbnail.path + "." + comics.thumbnail.extension
@@ -67,6 +76,11 @@ class CharacterComicAdapter : RecyclerView.Adapter<CharacterComicAdapter.ViewHol
                 })
             if (position == 2 && comicSize > 3) {
                 itemView.viewMoreComics.visibility = View.VISIBLE
+                itemView.viewMoreComics.setOnClickListener {
+                    val nextAction = CharacterFragmentDirections.actionDestinationCharacterToDestinationComic(specificCharacter)
+                    nextAction.character = specificCharacter
+                    Navigation.findNavController(it).navigate(nextAction)
+                }
             }
         }
 

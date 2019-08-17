@@ -133,7 +133,6 @@ class CharactersAdapter(private val retry: () -> Unit) :
         }
     }
 
-
     class ListFooterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(status: NetworkState?) {
