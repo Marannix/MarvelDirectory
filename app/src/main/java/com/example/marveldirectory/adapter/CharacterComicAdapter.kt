@@ -3,8 +3,6 @@ package com.example.marveldirectory.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.view.menu.ActionMenuItemView
-import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marveldirectory.R
 import com.example.marveldirectory.data.entity.characters.comics.CharacterComicResult
@@ -30,7 +28,7 @@ class CharacterComicAdapter : RecyclerView.Adapter<CharacterComicAdapter.ViewHol
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (data.isNotEmpty())
-            holder.bind(data[position])
+            holder.bind(data[position], data.size, position)
     }
 
     fun setComic(comics: List<CharacterComicResult>) {
@@ -45,7 +43,11 @@ class CharacterComicAdapter : RecyclerView.Adapter<CharacterComicAdapter.ViewHol
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(comics: CharacterComicResult) {
+        fun bind(
+            comics: CharacterComicResult,
+            comicSize: Int,
+            position: Int
+        ) {
             itemView.comicTitle.text = comics.title
             val image = comics.thumbnail.path + "." + comics.thumbnail.extension
             Picasso.get()
@@ -63,6 +65,9 @@ class CharacterComicAdapter : RecyclerView.Adapter<CharacterComicAdapter.ViewHol
                     }
 
                 })
+            if (position == 2 && comicSize > 3) {
+                itemView.viewMoreComics.visibility = View.VISIBLE
+            }
         }
 
     }

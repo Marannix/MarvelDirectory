@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp">
@@ -39,5 +40,19 @@
             app:layout_constraintTop_toTopOf="@id/comicPoster"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/comicPoster"/>
+
+    <TextView
+            android:id="@+id/viewMoreComics"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginTop="25dp"
+            android:padding="8dp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:text="VIEW ALL"
+            app:layout_constraintTop_toBottomOf="@id/comicPoster"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
