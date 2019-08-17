@@ -30,16 +30,6 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"/>
 
-    <!--<ProgressBar-->
-    <!--android:id="@+id/characterImageProgress"-->
-    <!--android:layout_width="150dp"-->
-    <!--android:layout_height="150dp"-->
-    <!--app:layout_constraintStart_toStartOf="@id/characterImage"-->
-    <!--app:layout_constraintEnd_toEndOf="@id/characterImage"-->
-    <!--app:layout_constraintTop_toTopOf="@id/characterImage"-->
-    <!--app:layout_constraintBottom_toBottomOf="@id/characterImage"-->
-    <!--/>-->
-
     <TextView
             android:id="@+id/characterName"
             android:layout_width="0dp"
@@ -48,7 +38,7 @@
             android:lines="2"
             android:padding="5dp"
             android:gravity="center"
-            android:textColor="@color/darkGray"
+            android:textColor="?android:textColorPrimary"
             android:elevation="4dp"
             android:textSize="13sp"
             android:background="@drawable/character_text_background_colour"

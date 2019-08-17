@@ -32,6 +32,7 @@
             android:layout_marginStart="16dp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-black"
+            android:textColor="?android:textColorPrimary"
             android:textSize="13sp"
             android:maxLines="2"
             app:layout_constraintStart_toEndOf="@id/comicPoster"
