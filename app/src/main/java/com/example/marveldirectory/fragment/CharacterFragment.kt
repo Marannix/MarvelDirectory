@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.marveldirectory.R
 import com.example.marveldirectory.adapter.CharacterComicAdapter
 import com.example.marveldirectory.data.entity.characters.CharactersResults
-import com.example.marveldirectory.data.entity.characters.comics.CharacterComicResult
-import com.example.marveldirectory.data.entity.characters.comics.CharacterComicThumbnail
+import com.example.marveldirectory.data.entity.characters.comic.CharacterComicResult
 import com.example.marveldirectory.repository.CharactersRepository
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso

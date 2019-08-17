@@ -1,4 +1,4 @@
-package com.example.marveldirectory.data.entity.characters.comics
+package com.example.marveldirectory.data.entity.characters.comic
 
 data class CharacterComicData(
     val offset: Int,
