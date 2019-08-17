@@ -26,7 +26,10 @@ class CharactersDataSource(
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, CharactersResults>) {
         updateState(NetworkState.LOADING)
         compositeDisposable.add(
-            marvelApiService.charactersApi().getCharacters(params.requestedLoadSize, 0).subscribe(
+            marvelApiService.charactersApi().getCharacters(params.requestedLoadSize, 0)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
                 { response ->
                     updateState(NetworkState.DONE)
                     charactersRepository.persistFetchedCharacters(response.charactersData.results)

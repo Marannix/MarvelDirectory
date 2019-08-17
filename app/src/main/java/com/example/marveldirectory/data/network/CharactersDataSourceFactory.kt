@@ -19,7 +19,6 @@ class CharactersDataSourceFactory(
     override fun create(): DataSource<Int, CharactersResults> {
         val charactersDataSource = CharactersDataSource(charactersRepository, marvelApiService, compositeDisposable)
         charactersDataSourceLiveData.postValue(charactersDataSource)
-        Log.d("ouch", charactersDataSourceLiveData.value.toString())
         return charactersDataSource
     }
 

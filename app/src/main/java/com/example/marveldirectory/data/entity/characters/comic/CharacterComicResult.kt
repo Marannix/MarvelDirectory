@@ -5,6 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class CharacterComicResult(
+    val id: String,
     val title: String,
     val thumbnail: CharacterComicThumbnail
 ) : Parcelable
