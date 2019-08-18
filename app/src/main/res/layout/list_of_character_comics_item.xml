@@ -10,7 +10,7 @@
         android:layout_margin="5dp">
 
     <ImageView
-            android:id="@+id/characterImage"
+            android:id="@+id/comicPoster"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:scaleType="fitXY"
@@ -21,7 +21,7 @@
     />
 
     <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/hourglass"
+            android:id="@+id/posterLoading"
             android:layout_width="150dp"
             android:layout_height="150dp"
             app:lottie_fileName="hourglass_loading.json"
@@ -32,7 +32,7 @@
             app:lottie_loop="true"/>
 
     <TextView
-            android:id="@+id/characterName"
+            android:id="@+id/comicName"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:maxLines="2"
@@ -41,12 +41,12 @@
             android:ellipsize="end"
             android:fontFamily="sans-serif-black"
             android:textColor="?android:textColorPrimary"
-            android:background="@drawable/character_text_background_colour"
             android:elevation="4dp"
             android:textSize="12sp"
+            android:background="@drawable/character_text_background_colour"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/characterImage"/>
+            app:layout_constraintTop_toBottomOf="@id/comicPoster"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

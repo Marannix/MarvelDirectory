@@ -6,13 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 
 import com.example.marveldirectory.R
 import com.example.marveldirectory.adapter.ComicsAdapter
 import com.example.marveldirectory.data.entity.characters.CharactersResults
-import com.example.marveldirectory.data.entity.characters.comic.CharacterComicResult
+import com.example.marveldirectory.data.network.NetworkState
 import com.example.marveldirectory.viewmodel.ComicsViewModel
+import kotlinx.android.synthetic.main.character_comic.*
 import kotlinx.android.synthetic.main.fragment_comic.*
 
 class ComicFragment : Fragment() {
@@ -45,9 +48,8 @@ class ComicFragment : Fragment() {
 
     private fun bindUI() {
         updateToolbar()
-
-        //TODO: Can this be done in the init:?
         showToolbar()
+        setAdapter()
     }
 
 
@@ -59,4 +61,27 @@ class ComicFragment : Fragment() {
         (activity as? AppCompatActivity)?.supportActionBar?.show()
     }
 
+    private fun setAdapter() {
+        adapter = ComicsAdapter { comicsViewModel.retry() }
+
+        listOfComicsRecyclerView.adapter = adapter
+        listOfComicsRecyclerView.layoutManager = GridLayoutManager(context, 3)
+        comicsViewModel.comicsList.observe(this, Observer {
+            adapter.submitList(it)
+        })
+    }
+
+    private fun initState() {
+        comicsViewModel.getState().observe(
+            this, Observer {
+                if (!comicsViewModel.listIsEmpty()) {
+                    adapter.setState(it ?: NetworkState.DONE)
+                }
+            }
+        )
+    }
+
+//    private fun updateTotalComicCount() {
+//        totalComicCount.text = character.
+//    }
 }

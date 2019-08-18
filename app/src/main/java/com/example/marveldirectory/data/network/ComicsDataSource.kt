@@ -33,13 +33,13 @@ class ComicsDataSource(
         params: LoadInitialParams<Int>
     ) {
         compositeDisposable.add(
-            marvelApiService.charactersApi().getComics(characterId)
+            marvelApiService.charactersApi().getComics(characterId, params.requestedLoadSize, 0)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                 {
                     updateState(NetworkState.DONE)
-                    callback.onResult(it.characterComicData.results, null, 1)
+                    callback.onResult(it.characterComicData.results, null, 20)
                 },
                 {
                     updateState(NetworkState.ERROR)
@@ -55,13 +55,16 @@ class ComicsDataSource(
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, CharacterComicResult>) {
         updateState(NetworkState.LOADING)
         compositeDisposable.add(
-            marvelApiService.charactersApi().getComics(characterId)
+            marvelApiService.charactersApi().getComics(characterId, params.requestedLoadSize, params.key)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     {
                         updateState(NetworkState.DONE)
-                        callback.onResult(it.characterComicData.results, params.key + 1)
+                        if (it.characterComicData.total > params.key) {
+
+                        }
+                        callback.onResult(it.characterComicData.results, params.key + 20)
                     },
                     {
                         updateState(NetworkState.ERROR)

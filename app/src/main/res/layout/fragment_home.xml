@@ -8,6 +8,8 @@
         android:layout_height="match_parent"
         android:background="@color/backgroundColor" tools:context=".fragment.HomeFragment">
 
+    <!-- Change this to lottie -->
+
     <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
@@ -16,6 +18,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <!-- TODO: Change this to lottie -->
 
     <TextView
             android:id="@+id/errorTextView"

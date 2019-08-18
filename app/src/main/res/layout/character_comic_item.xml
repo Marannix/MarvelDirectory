@@ -51,6 +51,7 @@
             android:visibility="gone"
             tools:visibility="visible"
             android:text="VIEW ALL"
+            android:textColor="#1a8cff"
             app:layout_constraintTop_toBottomOf="@id/comicPoster"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
