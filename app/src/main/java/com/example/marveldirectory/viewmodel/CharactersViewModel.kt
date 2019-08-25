@@ -47,6 +47,10 @@ class CharactersViewModel(application: Application) : AndroidViewModel(applicati
         charactersDataSourceFactory.charactersDataSourceLiveData.value?.retry()
     }
 
+    fun getTotal() : Int {
+        return charactersDataSourceFactory.charactersDataSourceLiveData.value?.getTotalCount()!!
+    }
+
     fun listIsEmpty() : Boolean {
         return charactersList.value?.isEmpty() ?: true
     }

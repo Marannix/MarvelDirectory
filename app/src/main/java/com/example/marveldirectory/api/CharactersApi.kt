@@ -18,6 +18,6 @@ interface CharactersApi {
     fun getCharacters(@Query("limit") limit: Int, @Query("offset") offset: Int): Single<CharactersResponse>
 
     @GET("characters/{id}/comics?$AUTH")
-    fun getComics(@Path("id") id: Int): Single<CharactersComicResponse>
+    fun getComics(@Path("id") id: Int, @Query("limit") limit: Int, @Query("offset") offset: Int): Single<CharactersComicResponse>
 
 }

@@ -8,20 +8,24 @@
               android:label="fragment_home" tools:layout="@layout/fragment_home">
         <action android:id="@+id/next_action"
                 app:destination="@id/destination_settings"/>
-        <action android:id="@+id/homeToComicAction" app:destination="@id/destination_comic"/>
         <action android:id="@+id/charactersToCharacterAction" app:destination="@id/destination_character"/>
     </fragment>
     <fragment android:id="@+id/destination_settings"
               android:name="com.example.marveldirectory.fragment.SettingsFragment"
-              android:label="fragment_settings" tools:layout="@layout/fragment_settings"/>
+              android:label="fragment_settings" tools:layout="@layout/fragment_settings">
+    </fragment>
     <fragment android:id="@+id/destination_comic" android:name="com.example.marveldirectory.fragment.ComicFragment"
               android:label="fragment_comic" tools:layout="@layout/fragment_comic">
-        <argument android:name="characters" app:argType="com.example.marveldirectory.data.entity.characters.CharactersResults"/>
+        <argument android:name="character" app:argType="com.example.marveldirectory.data.entity.characters.CharactersResults"/>
+        <argument android:name="comic" app:argType="com.example.marveldirectory.data.entity.characters.comic.CharacterComicResult"/>
+        <argument android:name="comicSize" app:argType="integer"/>
     </fragment>
     <fragment android:id="@+id/destination_character"
               android:name="com.example.marveldirectory.fragment.CharacterFragment"
               android:label="fragment_character" tools:layout="@layout/fragment_character">
         <argument android:name="character" app:argType="com.example.marveldirectory.data.entity.characters.CharactersResults"/>
+        <action android:id="@+id/action_destination_character_to_destination_comic"
+                app:destination="@id/destination_comic"/>
 
     </fragment>
 

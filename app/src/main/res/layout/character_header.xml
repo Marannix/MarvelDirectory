@@ -14,10 +14,23 @@
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.75"
+            app:layout_constraintHeight_percent="0.7"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/characterHeaderPosterLoading"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:lottie_fileName="hourglass_loading.json"
+            app:layout_constraintHeight_percent="0.7"
+            app:layout_constraintStart_toStartOf="@id/chosenCharacterPoster"
+            app:layout_constraintTop_toTopOf="@id/chosenCharacterPoster"
+            app:layout_constraintEnd_toEndOf="@id/chosenCharacterPoster"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
 
     <View
             android:id="@+id/imageBackground"
@@ -50,6 +63,7 @@
             android:textSize="15sp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-black"
+            android:textColor="?android:textColorPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageBackground"/>

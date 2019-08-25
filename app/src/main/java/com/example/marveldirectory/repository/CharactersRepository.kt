@@ -20,7 +20,7 @@ class CharactersRepository(val context:Context){
     }
 
     fun fetchCharacterComics(id: Int): Single<CharactersComicResponse> {
-        return marvelApiService.charactersApi().getComics(id)
+        return marvelApiService.charactersApi().getComics(id, 4, 0)
     }
 
     fun getAllCharacters(): List<CharactersResults> {

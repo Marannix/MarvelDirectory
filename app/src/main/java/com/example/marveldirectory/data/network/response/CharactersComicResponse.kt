@@ -1,6 +1,6 @@
 package com.example.marveldirectory.data.network.response
 
-import com.example.marveldirectory.data.entity.characters.comics.CharacterComicData
+import com.example.marveldirectory.data.entity.characters.comic.CharacterComicData
 import com.google.gson.annotations.SerializedName
 
 data class CharactersComicResponse(
