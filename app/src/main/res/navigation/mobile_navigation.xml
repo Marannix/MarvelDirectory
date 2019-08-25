@@ -12,10 +12,13 @@
     </fragment>
     <fragment android:id="@+id/destination_settings"
               android:name="com.example.marveldirectory.fragment.SettingsFragment"
-              android:label="fragment_settings" tools:layout="@layout/fragment_settings"/>
+              android:label="fragment_settings" tools:layout="@layout/fragment_settings">
+    </fragment>
     <fragment android:id="@+id/destination_comic" android:name="com.example.marveldirectory.fragment.ComicFragment"
               android:label="fragment_comic" tools:layout="@layout/fragment_comic">
         <argument android:name="character" app:argType="com.example.marveldirectory.data.entity.characters.CharactersResults"/>
+        <argument android:name="comic" app:argType="com.example.marveldirectory.data.entity.characters.comic.CharacterComicResult"/>
+        <argument android:name="comicSize" app:argType="integer"/>
     </fragment>
     <fragment android:id="@+id/destination_character"
               android:name="com.example.marveldirectory.fragment.CharacterFragment"

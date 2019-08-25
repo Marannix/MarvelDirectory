@@ -1,6 +1,7 @@
 package com.example.marveldirectory.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +14,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.marveldirectory.R
 import com.example.marveldirectory.adapter.ComicsAdapter
 import com.example.marveldirectory.data.entity.characters.CharactersResults
+import com.example.marveldirectory.data.entity.characters.comic.CharacterComicResult
 import com.example.marveldirectory.data.network.NetworkState
 import com.example.marveldirectory.viewmodel.ComicsViewModel
-import kotlinx.android.synthetic.main.character_comic.*
 import kotlinx.android.synthetic.main.fragment_comic.*
 
 class ComicFragment : Fragment() {
@@ -29,6 +30,8 @@ class ComicFragment : Fragment() {
     private lateinit var comicsViewModel: ComicsViewModel
     private lateinit var adapter: ComicsAdapter
     private lateinit var character: CharactersResults
+    private lateinit var comic: CharacterComicResult
+    private var comicSize: Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,13 +39,16 @@ class ComicFragment : Fragment() {
         arguments?.let {
             val safeArgs = ComicFragmentArgs.fromBundle(it)
             character = safeArgs.character
+            comic = safeArgs.comic
+            comicSize = safeArgs.comicSize
         }
 
         comicsViewModel = ViewModelProviders.of(this)
             .get(ComicsViewModel::class.java)
 
-        comicsViewModel.initViewModel(character.id)
+        comicsViewModel.initViewModel(character, comic)
 
+        totalComicCount.text = "$comicSize comics"
         bindUI()
     }
 
@@ -66,9 +72,11 @@ class ComicFragment : Fragment() {
 
         listOfComicsRecyclerView.adapter = adapter
         listOfComicsRecyclerView.layoutManager = GridLayoutManager(context, 3)
+
         comicsViewModel.comicsList.observe(this, Observer {
             adapter.submitList(it)
         })
+
     }
 
     private fun initState() {
@@ -81,7 +89,4 @@ class ComicFragment : Fragment() {
         )
     }
 
-//    private fun updateTotalComicCount() {
-//        totalComicCount.text = character.
-//    }
 }

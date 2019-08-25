@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import com.example.marveldirectory.data.entity.characters.CharactersData
 import com.example.marveldirectory.data.entity.characters.CharactersResults
+import com.example.marveldirectory.data.entity.characters.comic.CharacterComicResult
 
 class DatabaseHelper(val context: Context) {
 
@@ -20,4 +21,5 @@ class DatabaseHelper(val context: Context) {
     fun insertCharacters(characters: List<CharactersResults>) {
         database.charactersDataDao().insert(characters)
     }
+
 }

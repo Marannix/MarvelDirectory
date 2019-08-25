@@ -52,12 +52,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun initState() {
-        errorTextView.setOnClickListener { charactersViewModel.retry() }
+        errorAnimation.setOnClickListener {
+            charactersViewModel.retry()
+        }
         charactersViewModel.getState().observe(this, Observer { state ->
-            progressBar.visibility =
+            heroLoading.visibility =
                 if (charactersViewModel.listIsEmpty() && state == NetworkState.LOADING) View.VISIBLE else View.GONE
-            errorTextView.visibility =
-                if (charactersViewModel.listIsEmpty() && state == NetworkState.ERROR) View.VISIBLE else View.GONE
+            errorAnimation.visibility =
+                if (charactersViewModel.listIsEmpty() && state == NetworkState.ERROR) View.VISIBLE else View.INVISIBLE
             if (!charactersViewModel.listIsEmpty()) {
                 adapter.setState(state ?: NetworkState.DONE)
             }
