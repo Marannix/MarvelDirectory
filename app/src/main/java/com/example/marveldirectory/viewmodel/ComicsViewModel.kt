@@ -1,12 +1,11 @@
 package com.example.marveldirectory.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.example.marveldirectory.data.entity.characters.CharactersResults
 import com.example.marveldirectory.data.entity.characters.comic.CharacterComicResult
 import com.example.marveldirectory.data.network.ComicsDataSource
 import com.example.marveldirectory.data.network.ComicsDataSourceFactory
@@ -22,8 +21,8 @@ class ComicsViewModel : ViewModel() {
     private val pageSize = 10
     private lateinit var comicsDataSourceFactory: ComicsDataSourceFactory
 
-    fun initViewModel(id: Int) {
-        comicsDataSourceFactory = ComicsDataSourceFactory(marvelApiService, compositeDisposable, id)
+    fun initViewModel(character: CharactersResults, comic: CharacterComicResult) {
+        comicsDataSourceFactory = ComicsDataSourceFactory(marvelApiService, compositeDisposable, character, comic)
         val config = PagedList.Config.Builder()
             .setPageSize(pageSize)
             .setEnablePlaceholders(true)

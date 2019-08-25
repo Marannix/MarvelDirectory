@@ -3,6 +3,7 @@ package com.example.marveldirectory.data.network
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
+import com.example.marveldirectory.data.entity.characters.CharactersResults
 import com.example.marveldirectory.data.entity.characters.comic.CharacterComicResult
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,7 +14,8 @@ import io.reactivex.schedulers.Schedulers
 class ComicsDataSource(
     private val marvelApiService: MarvelApiService,
     private val compositeDisposable: CompositeDisposable,
-    private val characterId: Int
+    private val character: CharactersResults,
+    private val comic: CharacterComicResult
 ) : PageKeyedDataSource<Int, CharacterComicResult>() {
 
     var state: MutableLiveData<NetworkState> = MutableLiveData()
@@ -21,7 +23,7 @@ class ComicsDataSource(
 
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, CharacterComicResult>) {
         updateState(NetworkState.LOADING)
-        if (characterId != -1) {
+        if (character.id != -1) {
             getSpecificCharacterComics(callback, params)
         } else {
             getAllComics()
@@ -33,7 +35,7 @@ class ComicsDataSource(
         params: LoadInitialParams<Int>
     ) {
         compositeDisposable.add(
-            marvelApiService.charactersApi().getComics(characterId, params.requestedLoadSize, 0)
+            marvelApiService.charactersApi().getComics(character.id, params.requestedLoadSize, 0)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -55,7 +57,7 @@ class ComicsDataSource(
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, CharacterComicResult>) {
         updateState(NetworkState.LOADING)
         compositeDisposable.add(
-            marvelApiService.charactersApi().getComics(characterId, params.requestedLoadSize, params.key)
+            marvelApiService.charactersApi().getComics(character.id, params.requestedLoadSize, params.key)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -98,8 +100,8 @@ class ComicsDataSource(
         retryCompletable = if (action == null) null else Completable.fromAction(action)
     }
 
-
     private fun getAllComics() {
 
     }
+
 }

@@ -66,7 +66,7 @@ class CharactersAdapter(private val retry: () -> Unit) :
         return super.getItemCount() != 0 && (state == NetworkState.LOADING || state == NetworkState.ERROR)
     }
 
-    fun setState( state: NetworkState) {
+    fun setState(state: NetworkState) {
         this.state = state
         notifyItemChanged(super.getItemCount())
     }
@@ -102,7 +102,7 @@ class CharactersAdapter(private val retry: () -> Unit) :
         fun bind(character: CharactersResults) {
             itemView.characterName.text = character.name
             val image = character.thumbnail.path + "." + character.thumbnail.extension
-            Picasso.get().load(image).into(itemView.characterImage, object: Callback {
+            Picasso.get().load(image).into(itemView.characterImage, object : Callback {
                 override fun onSuccess() {
                     // TODO: The hourglass is still animating in the background, it can't be seen because the
                     //  image view has an elevation of 4dp
@@ -112,7 +112,7 @@ class CharactersAdapter(private val retry: () -> Unit) :
                 }
 
                 override fun onError(e: Exception?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
                 }
 
             })

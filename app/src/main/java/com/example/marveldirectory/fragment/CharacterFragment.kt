@@ -118,15 +118,18 @@ class CharacterFragment : Fragment() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { onRetrieveCharactersComicSuccess(it.characterComicData.results) },
+                { onRetrieveCharactersComicSuccess(it.characterComicData.results, it.characterComicData.total) },
                 { onRetrieveCharactersComicError(it.message) }
             )
         disposables.add(disposable)
     }
 
-    private fun onRetrieveCharactersComicSuccess(results: List<CharacterComicResult>) {
+    private fun onRetrieveCharactersComicSuccess(
+        results: List<CharacterComicResult>,
+        total: Int
+    ) {
         setSelectedCharacterPoster(results)
-        adapter.setComic(results, character)
+        adapter.setComic(results, character, total)
     }
 
     private fun onRetrieveCharactersComicError(errorMessage: String?) {
