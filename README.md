@@ -1,10 +1,10 @@
 # MarvelDirectory
  
-**What is this?**
+### What is this?
 
 Displaying marvel characters and comics using Marvel API while using a collection of Android Architecture Components. 
 
-**Android Architecture Components and libraries used**
+### Android Architecture Components and libraries used
 
 ```
 - Room
@@ -25,16 +25,18 @@ Displaying marvel characters and comics using Marvel API while using a collectio
 |---|---|
 |![Screenshot_1566773640](https://user-images.githubusercontent.com/15348446/63657014-a4c4ed80-c793-11e9-8720-c958ae0e5b84.png)|![Screenshot_1566773537](https://user-images.githubusercontent.com/15348446/63657007-91198700-c793-11e9-94f0-d9c7524c450f.png)|
 
-**How is data passed from one fragment to another?**
+### How is data passed from one fragment to another?
 
 Navigation allows passing data between fragments. Although the navigation only supports of Primitive from what I read, I was able to bypass this by using the data class package.
 
+res/layout/mobile_navigation.xml
 ```
 <argument android:name="character" app:argType="com.example.marveldirectory.data.entity.characters.CharactersResults"/>
 ```
 
 Then I pass the information to the next fragment using the navigation controller, setting a listener on the character layout.
 
+adapter/CharactersAdapter.kt
 ``` kotlin
 itemView.characterLayout.setOnClickListener {
                 val nextAction = HomeFragmentDirections.charactersToCharacterAction(character)
